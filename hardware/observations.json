@@ -1,0 +1,782 @@
+{
+  "schema_version": 1,
+  "observed_at": {
+    "utc": "2026-10-09T08:09:03+00:00",
+    "Asia/Tokyo": "2026-10-09T17:09:03+09:00"
+  },
+  "scope": "Read-only local OS and sysfs observations. No manufacturer specifications or physical vacancy inferences are included.",
+  "privacy": "Serial numbers, UUIDs, asset tags, hostnames, IP addresses and MAC addresses were not collected or saved.",
+  "cpu": {
+    "source": "lscpu -J",
+    "output": {
+      "lscpu": [
+        {
+          "field": "Architecture:",
+          "data": "x86_64"
+        },
+        {
+          "field": "CPU op-mode(s):",
+          "data": "32-bit, 64-bit"
+        },
+        {
+          "field": "Address sizes:",
+          "data": "46 bits physical, 48 bits virtual"
+        },
+        {
+          "field": "Byte Order:",
+          "data": "Little Endian"
+        },
+        {
+          "field": "CPU(s):",
+          "data": "8"
+        },
+        {
+          "field": "On-line CPU(s) list:",
+          "data": "0-7"
+        },
+        {
+          "field": "Vendor ID:",
+          "data": "GenuineIntel"
+        },
+        {
+          "field": "Model name:",
+          "data": "Intel(R) Xeon(R) W-2123 CPU @ 3.60GHz"
+        },
+        {
+          "field": "CPU family:",
+          "data": "6"
+        },
+        {
+          "field": "Model:",
+          "data": "85"
+        },
+        {
+          "field": "Thread(s) per core:",
+          "data": "2"
+        },
+        {
+          "field": "Core(s) per socket:",
+          "data": "4"
+        },
+        {
+          "field": "Socket(s):",
+          "data": "1"
+        },
+        {
+          "field": "Stepping:",
+          "data": "4"
+        },
+        {
+          "field": "CPU(s) scaling MHz:",
+          "data": "70%"
+        },
+        {
+          "field": "CPU max MHz:",
+          "data": "3900.0000"
+        },
+        {
+          "field": "CPU min MHz:",
+          "data": "1200.0000"
+        },
+        {
+          "field": "BogoMIPS:",
+          "data": "7200.00"
+        },
+        {
+          "field": "Flags:",
+          "data": "fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc art arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch cpuid_fault epb cat_l3 cdp_l3 pti intel_ppin ssbd mba ibrs ibpb stibp tpr_shadow flexpriority ept vpid ept_ad fsgsbase tsc_adjust bmi1 hle avx2 smep bmi2 erms invpcid rtm cqm mpx rdt_a avx512f avx512dq rdseed adx smap clflushopt clwb intel_pt avx512cd avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local dtherm ida arat pln pts hwp hwp_act_window hwp_epp hwp_pkg_req vnmi md_clear flush_l1d arch_capabilities"
+        },
+        {
+          "field": "Virtualization:",
+          "data": "VT-x"
+        },
+        {
+          "field": "L1d cache:",
+          "data": "128 KiB (4 instances)"
+        },
+        {
+          "field": "L1i cache:",
+          "data": "128 KiB (4 instances)"
+        },
+        {
+          "field": "L2 cache:",
+          "data": "4 MiB (4 instances)"
+        },
+        {
+          "field": "L3 cache:",
+          "data": "8.3 MiB (1 instance)"
+        },
+        {
+          "field": "NUMA node(s):",
+          "data": "1"
+        },
+        {
+          "field": "NUMA node0 CPU(s):",
+          "data": "0-7"
+        }
+      ]
+    }
+  },
+  "dmi": {
+    "source": "/sys/class/dmi/id allowlisted attributes",
+    "attributes": {
+      "sys_vendor": "HP",
+      "product_name": "HP Z4 G4 Workstation",
+      "product_version": "SBKPF,DWKSBLF",
+      "board_vendor": "HP",
+      "board_name": "81C5",
+      "board_version": "MVB",
+      "chassis_vendor": "HP",
+      "chassis_type": "3",
+      "bios_vendor": "HP",
+      "bios_version": "P61 v02.97",
+      "bios_date": "06/17/2025"
+    }
+  },
+  "memory_edac": {
+    "source": "/sys/devices/system/edac/mc",
+    "controllers": [
+      {
+        "edac_entry": "mc0",
+        "sysfs_path": "/sys/devices/system/edac/mc/mc0",
+        "controller_name": "Skylake Socket#0 IMC#0",
+        "size_mib": 16384,
+        "max_location": "channel 2 slot 1",
+        "modules": [
+          {
+            "edac_entry": "dimm0",
+            "sysfs_path": "/sys/devices/system/edac/mc/mc0/dimm0",
+            "size_mib": 8192,
+            "dimm_mem_type": "Unbuffered-DDR4",
+            "dimm_dev_type": "x8",
+            "dimm_edac_mode": "SECDED",
+            "dimm_label": "CPU_SrcID#0_MC#0_Chan#0_DIMM#0",
+            "dimm_location": "channel 0 slot 0"
+          },
+          {
+            "edac_entry": "dimm2",
+            "sysfs_path": "/sys/devices/system/edac/mc/mc0/dimm2",
+            "size_mib": 8192,
+            "dimm_mem_type": "Unbuffered-DDR4",
+            "dimm_dev_type": "x8",
+            "dimm_edac_mode": "SECDED",
+            "dimm_label": "CPU_SrcID#0_MC#0_Chan#1_DIMM#0",
+            "dimm_location": "channel 1 slot 0"
+          }
+        ]
+      },
+      {
+        "edac_entry": "mc1",
+        "sysfs_path": "/sys/devices/system/edac/mc/mc1",
+        "controller_name": "Skylake Socket#0 IMC#1",
+        "size_mib": 16384,
+        "max_location": "channel 2 slot 1",
+        "modules": [
+          {
+            "edac_entry": "dimm0",
+            "sysfs_path": "/sys/devices/system/edac/mc/mc1/dimm0",
+            "size_mib": 8192,
+            "dimm_mem_type": "Unbuffered-DDR4",
+            "dimm_dev_type": "x8",
+            "dimm_edac_mode": "SECDED",
+            "dimm_label": "CPU_SrcID#0_MC#1_Chan#0_DIMM#0",
+            "dimm_location": "channel 0 slot 0"
+          },
+          {
+            "edac_entry": "dimm2",
+            "sysfs_path": "/sys/devices/system/edac/mc/mc1/dimm2",
+            "size_mib": 8192,
+            "dimm_mem_type": "Unbuffered-DDR4",
+            "dimm_dev_type": "x8",
+            "dimm_edac_mode": "SECDED",
+            "dimm_label": "CPU_SrcID#0_MC#1_Chan#1_DIMM#0",
+            "dimm_location": "channel 1 slot 0"
+          }
+        ]
+      }
+    ],
+    "notes": [
+      "EDAC entries describe enumerated memory modules and logical controller locations. They do not by themselves establish the motherboard DIMM slot count or physical slot labels.",
+      "Module manufacturer, part number, serial number and memory speed were not available in this EDAC collection."
+    ]
+  },
+  "pci_firmware_slots": {
+    "source": "/sys/bus/pci/slots and resolved /sys/bus/pci/devices topology",
+    "slots": [
+      {
+        "firmware_slot_label": "1",
+        "sysfs_path": "/sys/bus/pci/slots/1",
+        "address": "0000:20:00",
+        "matching_parent_devices": [
+          {
+            "pci_address": "0000:20:00.0",
+            "sysfs_path": "/sys/devices/pci0000:20/0000:20:00.0",
+            "class": "0x060400",
+            "vendor_id": "0x8086",
+            "device_id": "0x2030",
+            "subsystem_vendor_id": "0x8086",
+            "subsystem_device_id": "0x0000",
+            "lspci_description": "PCI bridge [0604]: Intel Corporation Sky Lake-E PCI Express Root Port A [8086:2030] (rev 04)",
+            "parent_pci_address": null,
+            "driver": "pcieport",
+            "link": {
+              "current_link_speed": "2.5 GT/s PCIe",
+              "current_link_width": "16",
+              "max_link_speed": "8.0 GT/s PCIe",
+              "max_link_width": "16"
+            }
+          }
+        ],
+        "enumerated_downstream_endpoint_addresses": [
+          "0000:21:00.0",
+          "0000:21:00.1"
+        ]
+      },
+      {
+        "firmware_slot_label": "3",
+        "sysfs_path": "/sys/bus/pci/slots/3",
+        "address": "0000:14:00",
+        "matching_parent_devices": [
+          {
+            "pci_address": "0000:14:00.0",
+            "sysfs_path": "/sys/devices/pci0000:14/0000:14:00.0",
+            "class": "0x060400",
+            "vendor_id": "0x8086",
+            "device_id": "0x2030",
+            "subsystem_vendor_id": "0x8086",
+            "subsystem_device_id": "0x0000",
+            "lspci_description": "PCI bridge [0604]: Intel Corporation Sky Lake-E PCI Express Root Port A [8086:2030] (rev 04)",
+            "parent_pci_address": null,
+            "driver": "pcieport",
+            "link": {
+              "current_link_speed": "2.5 GT/s PCIe",
+              "current_link_width": "0",
+              "max_link_speed": "8.0 GT/s PCIe",
+              "max_link_width": "16"
+            }
+          }
+        ],
+        "enumerated_downstream_endpoint_addresses": []
+      },
+      {
+        "firmware_slot_label": "5",
+        "sysfs_path": "/sys/bus/pci/slots/5",
+        "address": "0000:2c:00",
+        "matching_parent_devices": [
+          {
+            "pci_address": "0000:2c:00.0",
+            "sysfs_path": "/sys/devices/pci0000:2c/0000:2c:00.0",
+            "class": "0x060400",
+            "vendor_id": "0x8086",
+            "device_id": "0x2030",
+            "subsystem_vendor_id": "0x8086",
+            "subsystem_device_id": "0x0000",
+            "lspci_description": "PCI bridge [0604]: Intel Corporation Sky Lake-E PCI Express Root Port A [8086:2030] (rev 04)",
+            "parent_pci_address": null,
+            "driver": "pcieport",
+            "link": {
+              "current_link_speed": "2.5 GT/s PCIe",
+              "current_link_width": "0",
+              "max_link_speed": "8.0 GT/s PCIe",
+              "max_link_width": "8"
+            }
+          }
+        ],
+        "enumerated_downstream_endpoint_addresses": []
+      },
+      {
+        "firmware_slot_label": "6",
+        "sysfs_path": "/sys/bus/pci/slots/6",
+        "address": "0000:2c:02",
+        "matching_parent_devices": [
+          {
+            "pci_address": "0000:2c:02.0",
+            "sysfs_path": "/sys/devices/pci0000:2c/0000:2c:02.0",
+            "class": "0x060400",
+            "vendor_id": "0x8086",
+            "device_id": "0x2032",
+            "subsystem_vendor_id": "0x8086",
+            "subsystem_device_id": "0x0000",
+            "lspci_description": "PCI bridge [0604]: Intel Corporation Sky Lake-E PCI Express Root Port C [8086:2032] (rev 04)",
+            "parent_pci_address": null,
+            "driver": "pcieport",
+            "link": {
+              "current_link_speed": "8.0 GT/s PCIe",
+              "current_link_width": "4",
+              "max_link_speed": "8.0 GT/s PCIe",
+              "max_link_width": "4"
+            }
+          }
+        ],
+        "enumerated_downstream_endpoint_addresses": [
+          "0000:2e:00.0"
+        ]
+      },
+      {
+        "firmware_slot_label": "7",
+        "sysfs_path": "/sys/bus/pci/slots/7",
+        "address": "0000:2c:03",
+        "matching_parent_devices": [
+          {
+            "pci_address": "0000:2c:03.0",
+            "sysfs_path": "/sys/devices/pci0000:2c/0000:2c:03.0",
+            "class": "0x060400",
+            "vendor_id": "0x8086",
+            "device_id": "0x2033",
+            "subsystem_vendor_id": "0x8086",
+            "subsystem_device_id": "0x0000",
+            "lspci_description": "PCI bridge [0604]: Intel Corporation Sky Lake-E PCI Express Root Port D [8086:2033] (rev 04)",
+            "parent_pci_address": null,
+            "driver": "pcieport",
+            "link": {
+              "current_link_speed": "2.5 GT/s PCIe",
+              "current_link_width": "0",
+              "max_link_speed": "8.0 GT/s PCIe",
+              "max_link_width": "4"
+            }
+          }
+        ],
+        "enumerated_downstream_endpoint_addresses": []
+      },
+      {
+        "firmware_slot_label": "8191",
+        "sysfs_path": "/sys/bus/pci/slots/8191",
+        "address": "0000:00:1b",
+        "matching_parent_devices": [],
+        "enumerated_downstream_endpoint_addresses": []
+      },
+      {
+        "firmware_slot_label": "8191-1",
+        "sysfs_path": "/sys/bus/pci/slots/8191-1",
+        "address": "0000:00:1d",
+        "matching_parent_devices": [],
+        "enumerated_downstream_endpoint_addresses": []
+      },
+      {
+        "firmware_slot_label": "8191-2",
+        "sysfs_path": "/sys/bus/pci/slots/8191-2",
+        "address": "0000:14:01",
+        "matching_parent_devices": [],
+        "enumerated_downstream_endpoint_addresses": []
+      },
+      {
+        "firmware_slot_label": "8191-3",
+        "sysfs_path": "/sys/bus/pci/slots/8191-3",
+        "address": "0000:14:02",
+        "matching_parent_devices": [],
+        "enumerated_downstream_endpoint_addresses": []
+      },
+      {
+        "firmware_slot_label": "8191-4",
+        "sysfs_path": "/sys/bus/pci/slots/8191-4",
+        "address": "0000:14:03",
+        "matching_parent_devices": [],
+        "enumerated_downstream_endpoint_addresses": []
+      },
+      {
+        "firmware_slot_label": "8191-5",
+        "sysfs_path": "/sys/bus/pci/slots/8191-5",
+        "address": "0000:20:01",
+        "matching_parent_devices": [],
+        "enumerated_downstream_endpoint_addresses": []
+      },
+      {
+        "firmware_slot_label": "8191-6",
+        "sysfs_path": "/sys/bus/pci/slots/8191-6",
+        "address": "0000:20:02",
+        "matching_parent_devices": [],
+        "enumerated_downstream_endpoint_addresses": []
+      },
+      {
+        "firmware_slot_label": "8191-7",
+        "sysfs_path": "/sys/bus/pci/slots/8191-7",
+        "address": "0000:20:03",
+        "matching_parent_devices": [],
+        "enumerated_downstream_endpoint_addresses": []
+      },
+      {
+        "firmware_slot_label": "8191-8",
+        "sysfs_path": "/sys/bus/pci/slots/8191-8",
+        "address": "0000:2c:01",
+        "matching_parent_devices": [],
+        "enumerated_downstream_endpoint_addresses": []
+      }
+    ],
+    "notes": [
+      "Firmware slot labels are recorded verbatim; they are not guaranteed to be printed physical expansion slot labels.",
+      "An empty enumerated_downstream_endpoint_addresses list means no downstream endpoint was enumerated by the OS at collection time. It does not prove the connector is physically vacant, present or accessible."
+    ]
+  },
+  "pci_endpoints": [
+    {
+      "pci_address": "0000:00:1f.6",
+      "sysfs_path": "/sys/devices/pci0000:00/0000:00:1f.6",
+      "class": "0x020000",
+      "vendor_id": "0x8086",
+      "device_id": "0x15b7",
+      "subsystem_vendor_id": "0x103c",
+      "subsystem_device_id": "0x81c5",
+      "lspci_description": "Ethernet controller [0200]: Intel Corporation Ethernet Connection (2) I219-LM [8086:15b7]",
+      "parent_pci_address": null,
+      "driver": "e1000e",
+      "link": {},
+      "category": "nic",
+      "network_interfaces": [
+        {
+          "name": "eno1",
+          "operstate": "down",
+          "speed_mbps": -1,
+          "duplex": "unknown"
+        }
+      ]
+    },
+    {
+      "pci_address": "0000:01:00.0",
+      "sysfs_path": "/sys/devices/pci0000:00/0000:00:1c.0/0000:01:00.0",
+      "class": "0x020000",
+      "vendor_id": "0x8086",
+      "device_id": "0x1533",
+      "subsystem_vendor_id": "0x103c",
+      "subsystem_device_id": "0x81c5",
+      "lspci_description": "Ethernet controller [0200]: Intel Corporation I210 Gigabit Network Connection [8086:1533] (rev 03)",
+      "parent_pci_address": "0000:00:1c.0",
+      "driver": "igb",
+      "link": {
+        "current_link_speed": "2.5 GT/s PCIe",
+        "current_link_width": "1",
+        "max_link_speed": "2.5 GT/s PCIe",
+        "max_link_width": "1"
+      },
+      "category": "nic",
+      "parent": {
+        "pci_address": "0000:00:1c.0",
+        "sysfs_path": "/sys/devices/pci0000:00/0000:00:1c.0",
+        "class": "0x060400",
+        "vendor_id": "0x8086",
+        "device_id": "0xa292",
+        "subsystem_vendor_id": "0x103c",
+        "subsystem_device_id": "0x81c5",
+        "lspci_description": "PCI bridge [0604]: Intel Corporation 200 Series PCH PCI Express Root Port #3 [8086:a292] (rev f0)",
+        "parent_pci_address": null,
+        "driver": "pcieport",
+        "link": {
+          "current_link_speed": "2.5 GT/s PCIe",
+          "current_link_width": "1",
+          "max_link_speed": "8.0 GT/s PCIe",
+          "max_link_width": "1"
+        }
+      },
+      "network_interfaces": [
+        {
+          "name": "eno2",
+          "operstate": "up",
+          "speed_mbps": 1000,
+          "duplex": "full"
+        }
+      ]
+    },
+    {
+      "pci_address": "0000:21:00.0",
+      "sysfs_path": "/sys/devices/pci0000:20/0000:20:00.0/0000:21:00.0",
+      "class": "0x030000",
+      "vendor_id": "0x10de",
+      "device_id": "0x1c30",
+      "subsystem_vendor_id": "0x103c",
+      "subsystem_device_id": "0x11b3",
+      "lspci_description": "VGA compatible controller [0300]: NVIDIA Corporation GP106GL [Quadro P2000] [10de:1c30] (rev a1)",
+      "parent_pci_address": "0000:20:00.0",
+      "driver": "nvidia",
+      "link": {
+        "current_link_speed": "2.5 GT/s PCIe",
+        "current_link_width": "16",
+        "max_link_speed": "8.0 GT/s PCIe",
+        "max_link_width": "16"
+      },
+      "category": "gpu",
+      "parent": {
+        "pci_address": "0000:20:00.0",
+        "sysfs_path": "/sys/devices/pci0000:20/0000:20:00.0",
+        "class": "0x060400",
+        "vendor_id": "0x8086",
+        "device_id": "0x2030",
+        "subsystem_vendor_id": "0x8086",
+        "subsystem_device_id": "0x0000",
+        "lspci_description": "PCI bridge [0604]: Intel Corporation Sky Lake-E PCI Express Root Port A [8086:2030] (rev 04)",
+        "parent_pci_address": null,
+        "driver": "pcieport",
+        "link": {
+          "current_link_speed": "2.5 GT/s PCIe",
+          "current_link_width": "16",
+          "max_link_speed": "8.0 GT/s PCIe",
+          "max_link_width": "16"
+        }
+      }
+    },
+    {
+      "pci_address": "0000:2e:00.0",
+      "sysfs_path": "/sys/devices/pci0000:2c/0000:2c:02.0/0000:2e:00.0",
+      "class": "0x010802",
+      "vendor_id": "0x144d",
+      "device_id": "0xa804",
+      "subsystem_vendor_id": "0x144d",
+      "subsystem_device_id": "0xa801",
+      "lspci_description": "Non-Volatile memory controller [0108]: Samsung Electronics Co Ltd NVMe SSD Controller SM961/PM961/SM963 [144d:a804]",
+      "parent_pci_address": "0000:2c:02.0",
+      "driver": "nvme",
+      "link": {
+        "current_link_speed": "8.0 GT/s PCIe",
+        "current_link_width": "4",
+        "max_link_speed": "8.0 GT/s PCIe",
+        "max_link_width": "4"
+      },
+      "category": "nvme",
+      "parent": {
+        "pci_address": "0000:2c:02.0",
+        "sysfs_path": "/sys/devices/pci0000:2c/0000:2c:02.0",
+        "class": "0x060400",
+        "vendor_id": "0x8086",
+        "device_id": "0x2032",
+        "subsystem_vendor_id": "0x8086",
+        "subsystem_device_id": "0x0000",
+        "lspci_description": "PCI bridge [0604]: Intel Corporation Sky Lake-E PCI Express Root Port C [8086:2032] (rev 04)",
+        "parent_pci_address": null,
+        "driver": "pcieport",
+        "link": {
+          "current_link_speed": "8.0 GT/s PCIe",
+          "current_link_width": "4",
+          "max_link_speed": "8.0 GT/s PCIe",
+          "max_link_width": "4"
+        }
+      }
+    }
+  ],
+  "block_devices": {
+    "source": "lsblk -b -J -o NAME,KNAME,TYPE,SIZE,MODEL,TRAN,ROTA,HOTPLUG,PKNAME and sysfs",
+    "output": {
+      "blockdevices": [
+        {
+          "name": "sr0",
+          "kname": "sr0",
+          "type": "rom",
+          "size": 21331968,
+          "model": "hp HLDS DVDRW GUD1N",
+          "tran": "sata",
+          "rota": true,
+          "hotplug": false,
+          "pkname": null,
+          "sysfs_device_path": "/sys/devices/pci0000:00/0000:00:17.0/ata5/host4/target4:0:0/4:0:0:0"
+        },
+        {
+          "name": "nvme0n1",
+          "kname": "nvme0n1",
+          "type": "disk",
+          "size": 512110190592,
+          "model": "SAMSUNG MZVLW512HMJP-000H1",
+          "tran": "nvme",
+          "rota": false,
+          "hotplug": false,
+          "pkname": null,
+          "children": [
+            {
+              "name": "nvme0n1p1",
+              "kname": "nvme0n1p1",
+              "type": "part",
+              "size": 1127219200,
+              "model": null,
+              "tran": "nvme",
+              "rota": false,
+              "hotplug": false,
+              "pkname": "nvme0n1"
+            },
+            {
+              "name": "nvme0n1p2",
+              "kname": "nvme0n1p2",
+              "type": "part",
+              "size": 2147483648,
+              "model": null,
+              "tran": "nvme",
+              "rota": false,
+              "hotplug": false,
+              "pkname": "nvme0n1"
+            },
+            {
+              "name": "nvme0n1p3",
+              "kname": "nvme0n1p3",
+              "type": "part",
+              "size": 508833038336,
+              "model": null,
+              "tran": "nvme",
+              "rota": false,
+              "hotplug": false,
+              "pkname": "nvme0n1"
+            }
+          ],
+          "sysfs_device_path": "/sys/devices/pci0000:2c/0000:2c:02.0/0000:2e:00.0/nvme/nvme0"
+        }
+      ]
+    },
+    "notes": [
+      "Loop devices were omitted. An optical drive size represents media exposed at observation time, not the capacity of the drive hardware."
+    ]
+  },
+  "sata": {
+    "links": [
+      {
+        "name": "link1",
+        "sysfs_path": "/sys/devices/pci0000:00/0000:00:17.0/ata1/link1/ata_link/link1",
+        "sata_spd": "<unknown>",
+        "sata_spd_limit": "<unknown>",
+        "hw_sata_spd_limit": "<unknown>",
+        "device_sysfs_path": "/sys/devices/pci0000:00/0000:00:17.0/ata1/link1"
+      },
+      {
+        "name": "link2",
+        "sysfs_path": "/sys/devices/pci0000:00/0000:00:17.0/ata2/link2/ata_link/link2",
+        "sata_spd": "<unknown>",
+        "sata_spd_limit": "<unknown>",
+        "hw_sata_spd_limit": "<unknown>",
+        "device_sysfs_path": "/sys/devices/pci0000:00/0000:00:17.0/ata2/link2"
+      },
+      {
+        "name": "link3",
+        "sysfs_path": "/sys/devices/pci0000:00/0000:00:17.0/ata3/link3/ata_link/link3",
+        "sata_spd": "<unknown>",
+        "sata_spd_limit": "<unknown>",
+        "hw_sata_spd_limit": "<unknown>",
+        "device_sysfs_path": "/sys/devices/pci0000:00/0000:00:17.0/ata3/link3"
+      },
+      {
+        "name": "link4",
+        "sysfs_path": "/sys/devices/pci0000:00/0000:00:17.0/ata4/link4/ata_link/link4",
+        "sata_spd": "<unknown>",
+        "sata_spd_limit": "<unknown>",
+        "hw_sata_spd_limit": "<unknown>",
+        "device_sysfs_path": "/sys/devices/pci0000:00/0000:00:17.0/ata4/link4"
+      },
+      {
+        "name": "link5",
+        "sysfs_path": "/sys/devices/pci0000:00/0000:00:17.0/ata5/link5/ata_link/link5",
+        "sata_spd": "1.5 Gbps",
+        "sata_spd_limit": "<unknown>",
+        "hw_sata_spd_limit": "<unknown>",
+        "device_sysfs_path": "/sys/devices/pci0000:00/0000:00:17.0/ata5/link5"
+      },
+      {
+        "name": "link6",
+        "sysfs_path": "/sys/devices/pci0000:00/0000:00:17.0/ata6/link6/ata_link/link6",
+        "sata_spd": "<unknown>",
+        "sata_spd_limit": "<unknown>",
+        "hw_sata_spd_limit": "<unknown>",
+        "device_sysfs_path": "/sys/devices/pci0000:00/0000:00:17.0/ata6/link6"
+      },
+      {
+        "name": "link7",
+        "sysfs_path": "/sys/devices/pci0000:00/0000:00:17.0/ata7/link7/ata_link/link7",
+        "sata_spd": "<unknown>",
+        "sata_spd_limit": "<unknown>",
+        "hw_sata_spd_limit": "<unknown>",
+        "device_sysfs_path": "/sys/devices/pci0000:00/0000:00:17.0/ata7/link7"
+      },
+      {
+        "name": "link8",
+        "sysfs_path": "/sys/devices/pci0000:00/0000:00:17.0/ata8/link8/ata_link/link8",
+        "sata_spd": "<unknown>",
+        "sata_spd_limit": "<unknown>",
+        "hw_sata_spd_limit": "<unknown>",
+        "device_sysfs_path": "/sys/devices/pci0000:00/0000:00:17.0/ata8/link8"
+      }
+    ],
+    "ports": [
+      {
+        "name": "ata1",
+        "sysfs_path": "/sys/devices/pci0000:00/0000:00:17.0/ata1/ata_port/ata1",
+        "port_no": "1",
+        "nr_pmp_links": "0"
+      },
+      {
+        "name": "ata2",
+        "sysfs_path": "/sys/devices/pci0000:00/0000:00:17.0/ata2/ata_port/ata2",
+        "port_no": "2",
+        "nr_pmp_links": "0"
+      },
+      {
+        "name": "ata3",
+        "sysfs_path": "/sys/devices/pci0000:00/0000:00:17.0/ata3/ata_port/ata3",
+        "port_no": "3",
+        "nr_pmp_links": "0"
+      },
+      {
+        "name": "ata4",
+        "sysfs_path": "/sys/devices/pci0000:00/0000:00:17.0/ata4/ata_port/ata4",
+        "port_no": "4",
+        "nr_pmp_links": "0"
+      },
+      {
+        "name": "ata5",
+        "sysfs_path": "/sys/devices/pci0000:00/0000:00:17.0/ata5/ata_port/ata5",
+        "port_no": "5",
+        "nr_pmp_links": "0"
+      },
+      {
+        "name": "ata6",
+        "sysfs_path": "/sys/devices/pci0000:00/0000:00:17.0/ata6/ata_port/ata6",
+        "port_no": "6",
+        "nr_pmp_links": "0"
+      },
+      {
+        "name": "ata7",
+        "sysfs_path": "/sys/devices/pci0000:00/0000:00:17.0/ata7/ata_port/ata7",
+        "port_no": "7",
+        "nr_pmp_links": "0"
+      },
+      {
+        "name": "ata8",
+        "sysfs_path": "/sys/devices/pci0000:00/0000:00:17.0/ata8/ata_port/ata8",
+        "port_no": "8",
+        "nr_pmp_links": "0"
+      }
+    ],
+    "block_devices": [
+      {
+        "name": "sr0",
+        "kname": "sr0",
+        "type": "rom",
+        "size": 21331968,
+        "model": "hp HLDS DVDRW GUD1N",
+        "tran": "sata",
+        "rota": true,
+        "hotplug": false,
+        "pkname": null,
+        "sysfs_device_path": "/sys/devices/pci0000:00/0000:00:17.0/ata5/host4/target4:0:0/4:0:0:0"
+      }
+    ],
+    "notes": [
+      "ATA link entries are OS-visible controller links; their count is not a count of physical motherboard SATA connectors.",
+      "Unknown negotiated SATA speed does not establish physical connector vacancy."
+    ]
+  },
+  "os": {
+    "os_release": {
+      "PRETTY_NAME": "Ubuntu 24.04.5 LTS",
+      "NAME": "Ubuntu",
+      "VERSION_ID": "24.04",
+      "VERSION": "24.04.5 LTS (Noble Numbat)",
+      "VERSION_CODENAME": "noble",
+      "ID": "ubuntu",
+      "ID_LIKE": "debian",
+      "UBUNTU_CODENAME": "noble"
+    },
+    "kernel_release": "7.0.0-34-generic",
+    "machine": "x86_64"
+  },
+  "from_previous_observation": [
+    {
+      "component": "NVIDIA Quadro P2000",
+      "source": "Previously measured nvidia-smi values supplied by parent agent; not remeasured in this snapshot.",
+      "observed_at": null,
+      "memory_total_mib": 5120,
+      "driver_version": "580.178.04"
+    }
+  ],
+  "read_errors": []
+}

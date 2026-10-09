@@ -1,0 +1,98 @@
+HP Z4 G4 部品更新用情報
+基準日 2026年10月9日 JST
+対象 Xeon W-2123 / Intel C422 / 基板 HP 81C5 / BIOS P61 v02.97
+
+現在の構成
+  CPU: Xeon W-2123、4コア8スレッド
+  メモリ: 32GB、8GBモジュール4枚、ECC SECDEDを認識
+  GPU: Quadro P2000、VRAM 5120MiB
+  SSD: Samsung MZVLW512HMJP-000H1、512GB、PCIe 3.0 x4 NVMe
+  光学ドライブ: HP HLDS DVDRW GUD1N、SATA
+  電源容量・メモリ型番と実動作速度: 未確認
+
+空きスロットとベイ
+  メモリ: 全8本、認識4枚、空き候補4本。
+  PCIe: 全5本のデータスロット、GPUをSlot 1で認識、残り4本は空き候補。
+    Slot 0: 背面ブラケット取付専用、データコネクタなし。
+    Slot 1: 最上段、PCIe 3.0 x16、CPU直結、P2000を使用。
+    Slot 2: PCIe 3.0 x4、PCH接続、末端開放、追加カード未検出。
+    Slot 3: PCIe 3.0 x16、CPU直結、配下機器未検出。
+    Slot 4: PCIe 3.0 x4、PCH接続、末端開放、追加カード未検出。
+    Slot 5: 最下段、PCIe 3.0 x8、CPU直結、末端開放、配下機器未検出。
+  M.2: 全2基、CPU直結PCIe 3.0 x4、Key M、NVMe1台認識、空き候補1基。
+    使用SSDはファームウェアSlot 6配下。Slot 7配下は機器未検出。
+    ファームウェア番号と基板上のM.2番号の対応は未確定。
+    2280は公式記載に対応。22110は仕様書内に最大80mmとの不整合があり取付点を現物確認。
+  SATA: 基板上6ポート、各6Gb/s、光学ドライブ1台認識、未使用候補5ポート。
+    OSのataリンク8個という表示は、物理SATAコネクタ8個を意味しない。
+  内蔵ベイ: 3.5型2基、HDD/SATA SSDは未検出、空き候補2基。
+    2.5型SSD/HDDの固定には対応アダプターが必要。
+  前面ベイ: 5.25型2基。光学ドライブの取付位置・キャリア構成を確認して空き数を確定する。
+
+空き候補は仕様数とOS認識からの推定。停止・無効化した部品、物理干渉、
+固定金具やケーブルの有無は筐体内で確認する。上記は交換前の基準情報。
+
+メモリ更新条件
+  Xeon構成のメーカー対応はDDR4 ECC Registered DIMM（RDIMM）。
+  現CPUの対応速度は最大2666MT/s、4チャネル。
+  W-2100構成のHP対応容量は32GB×8＝256GB。
+  製品全体の512GBは64GB×8のW-2200構成に対応し、現CPUの上限とは区別する。
+  HP対応品番の記録:
+    W-2100対応: 1XD84AA/AT（8GB）、1XD85AA/AT（16GB）、1XD86AA/AT（32GB）、
+                5YZ56AA/AT（8GB/2933）。
+    W-2100非対応: 5YZ54AA/AT（16GB）、5YZ55AA/AT（32GB）、5YZ57AA/AT（64GB）。
+  W-21xxで32GB RDIMMを使う構成はメモリ冷却8TC68AA（CTO 1MY90AV）が必要。
+  速度表記だけではCPU世代との互換性を判断できない。
+  公式図の装着順:
+    DIMM1 → DIMM8 → DIMM3 → DIMM6 → DIMM2 → DIMM7 → DIMM4 → DIMM5
+  現状の個別DIMM番号は未確定。
+  EDACはUnbuffered-DDR4と表示し、メーカーRDIMM仕様と一致しない。
+  実装品の形式はモジュール型番またはラベルで確認する。
+
+GPUと電源の条件
+  Xeon構成のメーカー電源選択肢:
+    465W: GPU補助電源なし。
+    750W: 6ピン補助電源2本。
+    1000W: 6+2ピン補助電源4本。
+  実機の電源選択肢・残りケーブル数は未確定。
+  Slot 1～5は延長支持具を使うフルハイト・フルレングスカードに対応。
+  末端開放x4/x8へx16カードを装着しても電気レーン数は増えない。
+  GPUの厚さ、隣接スロット、長さ・高さ、補助電源の曲げ余裕は現物で照合する。
+  候補GPUによって前面ファン・カードガイド1XM33AAと上位電源が条件になる。
+
+CPU更新条件
+  現プラットフォームはLGA2066 R4 / C422 / Xeon W。
+  HPのプラットフォーム対応表にはW-2100系の一部とW-2200系を掲載。
+  個別の交換候補はBIOS、CPUクーラー、電源容量との適合を確認する。
+  Core X/X299構成の互換を現基板へ適用しない。
+  保守資料のエラー008はBIOSのCPU未対応、912はCPU電力要求とクーラー不一致。
+
+筐体内で残る確認
+  電源ラベルの容量と品番、GPU/SATA電源の残数。
+  メモリ型番、DIMM番号、CPUクーラー品番、冷却ユニット。
+  M.2の空き・固定ネジ・ヒートシンク、各PCIe位置の空きと物理干渉。
+  ドライブベイ、固定キャリア、2.5型アダプター、SATAケーブル。
+  管理者パスワードが必要なためSMBIOS直接読み取りは未完了。
+
+保存資料
+  observations.json: 実機の観測値。識別用シリアル・UUID・MAC・IPは保存しない。
+  upgrade-reference.json: スロット・互換条件・出典の構造化データ。
+  sources/hp-z4-g4-quickspecs-v62.pdf: HP公式仕様書、v62、2025年1月7日。
+  sources/hp-z4-g4-service-guide-2024.pdf: HP公式保守マニュアル、第6版、2024年8月。
+  sources/memory-layout-v62.png: 仕様書p21、メモリ装着順。
+  sources/internal-layout-v62.png: 仕様書p2、内部配置。
+  sources/index.json: 原本のURL、版、容量、SHA256。
+
+根拠
+  HP QuickSpecs v62: 印刷p2・6（スロット/ベイ）、p7～8（電源）、
+                   p14～15（メモリ互換/冷却/容量）、p21～22（基板/装着順）、
+                   p23（SATA）、p41（CPU対応）。
+  https://www8.hp.com/h20195/v2/getpdf.aspx/c05527757.pdf
+  HP保守マニュアル: 印刷p77（PDF物理p85、008）、
+                   印刷p82（PDF物理p90、912）。
+  https://kaas.hpcloud.hp.com/pdf-public/pdf_6775743_en-US-1.pdf
+  日本HPメモリ注意 a30090
+  https://jp.ext.hp.com/v-ivr/workstation/other/faq/26/
+  Intel W-2123仕様
+  https://www.intel.com/content/www/us/en/products/sku/125036/intel-xeon-w2123-processor-8-25m-cache-3-60-ghz/specifications.html
+

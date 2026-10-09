@@ -1,0 +1,63 @@
+{
+  "acquired_on_jst": "2026-10-09",
+  "files": [
+    {
+      "file": "hp-z4-g4-quickspecs-v62.pdf",
+      "kind": "manufacturer_original_pdf",
+      "title": "HP Z4 G4 Workstation QuickSpecs",
+      "url": "https://www8.hp.com/h20195/v2/getpdf.aspx/c05527757.pdf",
+      "version": 62,
+      "published": "2025-01-07",
+      "pages": 100,
+      "bytes": 1192997,
+      "sha256": "83ae8dcf7d7b4eb20c236691c0e7cb626f89d31c21e4637dbf7ddf80c4acb8d7"
+    },
+    {
+      "file": "hp-z4-g4-service-guide-2024.pdf",
+      "kind": "manufacturer_original_pdf",
+      "title": "HP Z4 G4 Workstation Maintenance and Service Guide",
+      "url": "https://kaas.hpcloud.hp.com/pdf-public/pdf_6775743_en-US-1.pdf",
+      "edition": 6,
+      "published": "2024-08",
+      "document_part_number": "L08650-006",
+      "pages": 118,
+      "bytes": 4285451,
+      "sha256": "c3cd789385dfb9bab76ecef75d87b8c4fc690ed5b122d583f825d799fc80dd19"
+    },
+    {
+      "file": "memory-layout-v62.png",
+      "kind": "rendered_pdf_page",
+      "source_file": "hp-z4-g4-quickspecs-v62.pdf",
+      "pdf_one_based_page": 21,
+      "printed_page": 21,
+      "rendering": "pdftoppm PNG, scale-to 1800",
+      "bytes": 301143,
+      "sha256": "8209fb3f6e86d886ecfec432942210e2167d13c75032b0a7e2e51c863c665145"
+    },
+    {
+      "file": "internal-layout-v62.png",
+      "kind": "rendered_pdf_page",
+      "source_file": "hp-z4-g4-quickspecs-v62.pdf",
+      "pdf_one_based_page": 2,
+      "printed_page": 2,
+      "rendering": "pdftoppm PNG, scale-to 1800",
+      "bytes": 675457,
+      "sha256": "97d4e10685dae258c8883d44a2c5d8c787d206eebac35299f65a984837660855"
+    }
+  ],
+  "additional_primary_sources": [
+    {
+      "title": "日本HP 純正メモリ仕様変更FAQ a30090",
+      "url": "https://jp.ext.hp.com/v-ivr/workstation/other/faq/26/",
+      "accessed_on_jst": "2026-10-09",
+      "original_file_cached": false
+    },
+    {
+      "title": "Intel Xeon W-2123 Specifications",
+      "url": "https://www.intel.com/content/www/us/en/products/sku/125036/intel-xeon-w2123-processor-8-25m-cache-3-60-ghz/specifications.html",
+      "accessed_on_jst": "2026-10-09",
+      "original_file_cached": false
+    }
+  ]
+}
+

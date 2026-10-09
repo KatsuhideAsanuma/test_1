@@ -1,0 +1,375 @@
+{
+  "schema_version": "1.0",
+  "reference_date_jst": "2026-10-09",
+  "scope": "HP Z4 G4 Workstation Xeon W/C422構成の部品更新用。仕様とOS観測からの推定を区別する。",
+  "observation_file": "observations.json",
+  "machine": {
+    "manufacturer": "HP",
+    "model": "HP Z4 G4 Workstation",
+    "board": "81C5",
+    "chipset": "Intel C422",
+    "bios": {
+      "version": "P61 v02.97",
+      "date": "2025-06-17"
+    },
+    "cpu": {
+      "model": "Intel Xeon W-2123",
+      "cores": 4,
+      "threads": 8,
+      "socket": "LGA2066 R4",
+      "manufacturer_max_memory_speed_mt_s": 2666
+    },
+    "memory": {
+      "installed_gib": 32,
+      "detected_modules": 4,
+      "module_capacity_gib": 8,
+      "ecc_mode_observed": "SECDED",
+      "module_type_kernel_label": "Unbuffered-DDR4",
+      "module_actual_part_number": null,
+      "module_actual_speed_mt_s": null
+    },
+    "gpu": {
+      "model": "NVIDIA Quadro P2000",
+      "vram_mib": 5120,
+      "driver_version": "580.178.04"
+    },
+    "storage": [
+      {
+        "model": "SAMSUNG MZVLW512HMJP-000H1",
+        "bytes": 512110190592,
+        "transport": "NVMe",
+        "observed_link": "PCIe 3.0 x4"
+      }
+    ],
+    "optical_drive": {
+      "model": "hp HLDS DVDRW GUD1N",
+      "transport": "SATA",
+      "os_ata_link": "ata5"
+    },
+    "psu_installed_watts": null
+  },
+  "vacancy_method": {
+    "total": "メーカーがXeon構成に記載したコネクタ・ベイ数",
+    "used": "OSが認識した機器数。停止・無効化・故障した部品は認識されない場合がある",
+    "free_candidate": "仕様上の総数と認識数から推定。取付具・ケーブル・物理干渉・未認識部品は筐体内で確認",
+    "physical_inspection_completed": false,
+    "smbios_direct_read_completed": false,
+    "smbios_read_limitation": "sudo -n dmidecodeは管理者パスワードが必要で取得不可"
+  },
+  "memory_expansion": {
+    "total_slots": 8,
+    "detected_populated": 4,
+    "free_candidates": 4,
+    "individual_board_dimm_occupancy_confirmed": false,
+    "load_order_board_labels": [
+      "DIMM1",
+      "DIMM8",
+      "DIMM3",
+      "DIMM6",
+      "DIMM2",
+      "DIMM7",
+      "DIMM4",
+      "DIMM5"
+    ],
+    "manufacturer_supported_type": "DDR4 ECC Registered DIMM (RDIMM)",
+    "current_module_type_caveat": "EDACのUnbuffered-DDR4表示はメーカーのRDIMM仕様と一致しない。実装品の形式・型番はラベル又はSMBIOSで確認する。",
+    "hp_supported_current_w2100_max_gib": 256,
+    "current_w2100_max_configuration": "32GB x 8",
+    "product_family_max_gib": 512,
+    "product_family_max_condition": "64GB RDIMM x 8はXeon W-2200構成のみ。現W-2123に製品全体の上限を適用しない。",
+    "hp_qualified_part_numbers_for_w2100": [
+      {
+        "part_number": "1XD84AA/AT",
+        "capacity_gb": 8,
+        "advertised_mt_s": 2666
+      },
+      {
+        "part_number": "1XD85AA/AT",
+        "capacity_gb": 16,
+        "advertised_mt_s": 2666
+      },
+      {
+        "part_number": "1XD86AA/AT",
+        "capacity_gb": 32,
+        "advertised_mt_s": 2666
+      },
+      {
+        "part_number": "5YZ56AA/AT",
+        "capacity_gb": 8,
+        "advertised_mt_s": 2933
+      }
+    ],
+    "hp_parts_not_qualified_for_w2100": [
+      "5YZ54AA/AT",
+      "5YZ55AA/AT",
+      "5YZ57AA/AT"
+    ],
+    "cooling_condition": "W-21xxで32GB RDIMMを使う構成はHP Z4 Memory Cooling Solutionが必要",
+    "cooling_parts": {
+      "aftermarket": "8TC68AA",
+      "factory": "1MY90AV"
+    },
+    "sources": [
+      "quickspecs-v62:p14,p15,p21",
+      "intel-w2123",
+      "hp-memory-faq"
+    ],
+    "diagram": "sources/memory-layout-v62.png"
+  },
+  "pcie_expansion": {
+    "data_slots_total": 5,
+    "detected_add_in_cards": 1,
+    "free_candidates": 4,
+    "slots": [
+      {
+        "slot": 0,
+        "description": "背面ブラケット専用。PCIeデータコネクタなし",
+        "electrical_lanes": 0,
+        "occupancy": "unconfirmed"
+      },
+      {
+        "slot": 1,
+        "position": "最上段",
+        "generation": 3,
+        "connector_lanes": 16,
+        "electrical_lanes": 16,
+        "origin": "CPU",
+        "occupancy": "GPU認識",
+        "device": "Quadro P2000",
+        "endpoint": "0000:21:00.0",
+        "root_port": "0000:20:00.0",
+        "firmware_slot": "1"
+      },
+      {
+        "slot": 2,
+        "generation": 3,
+        "connector_lanes": 4,
+        "electrical_lanes": 4,
+        "connector_open_ended": true,
+        "origin": "PCH",
+        "occupancy": "追加カード未検出・空き候補",
+        "root_port_mapping_confirmed": false
+      },
+      {
+        "slot": 3,
+        "generation": 3,
+        "connector_lanes": 16,
+        "electrical_lanes": 16,
+        "origin": "CPU",
+        "occupancy": "配下endpointなし・空き候補",
+        "root_port": "0000:14:00.0",
+        "firmware_slot": "3"
+      },
+      {
+        "slot": 4,
+        "generation": 3,
+        "connector_lanes": 4,
+        "electrical_lanes": 4,
+        "connector_open_ended": true,
+        "origin": "PCH",
+        "occupancy": "追加カード未検出・空き候補",
+        "root_port_mapping_confirmed": false
+      },
+      {
+        "slot": 5,
+        "position": "最下段",
+        "generation": 3,
+        "connector_lanes": 8,
+        "electrical_lanes": 8,
+        "connector_open_ended": true,
+        "origin": "CPU",
+        "occupancy": "配下endpointなし・空き候補",
+        "root_port": "0000:2c:00.0",
+        "firmware_slot": "5"
+      }
+    ],
+    "physical_conditions": "フルハイト・フルレングス対応は延長支持具使用が条件。x4/x8の末端開放にx16カードを装着しても電気レーン数は増えない。多スロット幅GPU等の干渉は現物確認。",
+    "sources": [
+      "quickspecs-v62:p6,p22"
+    ]
+  },
+  "m2_expansion": {
+    "total_slots": 2,
+    "detected_nvme_drives": 1,
+    "free_candidates": 1,
+    "generation": 3,
+    "electrical_lanes_per_slot": 4,
+    "origin": "CPU",
+    "key": "M",
+    "socket_type": 3,
+    "observed_occupied": {
+      "endpoint": "0000:2e:00.0",
+      "root_port": "0000:2c:02.0",
+      "firmware_slot": "6"
+    },
+    "observed_no_endpoint": {
+      "root_port": "0000:2c:03.0",
+      "firmware_slot": "7"
+    },
+    "board_m2_number_to_firmware_slot_mapping_confirmed": false,
+    "manufacturer_listed_sizes": [
+      "2260",
+      "2280",
+      "22110"
+    ],
+    "manufacturer_size_discrepancy": "p6は最大80mm、p22は2260/2280/22110と記載。2280は両方に適合。22110は取付点を現物確認する。",
+    "accessory_availability_confirmed": false,
+    "sources": [
+      "quickspecs-v62:p6,p22"
+    ]
+  },
+  "sata_expansion": {
+    "physical_ports_per_manufacturer": 6,
+    "speed_gbps_per_port": 6,
+    "detected_attached_drives": 1,
+    "free_port_candidates": 5,
+    "detected_device": "光学ドライブ sr0 / ata5",
+    "kernel_ata_links_enumerated": 8,
+    "kernel_count_caveat": "カーネルが列挙する8リンクを基板上のSATAコネクタ8個とは解釈しない。",
+    "cables_and_power_connectors_available": null,
+    "sources": [
+      "quickspecs-v62:p2,p6,p23"
+    ]
+  },
+  "drive_bays": [
+    {
+      "kind": "内蔵3.5型",
+      "total": 2,
+      "detected_hdd_or_sata_ssd": 0,
+      "free_candidates": 2,
+      "occupancy_confirmed": false,
+      "accessory_condition": "2.5型SSD/HDDは対応アダプターが必要",
+      "sources": [
+        "quickspecs-v62:p2,p6"
+      ]
+    },
+    {
+      "kind": "前面5.25型",
+      "total": 2,
+      "detected_optical_drives": 1,
+      "free_candidates": null,
+      "occupancy_confirmed": false,
+      "condition": "光学ドライブの実際の取付位置とキャリア構成を確認後に空き数を確定",
+      "sources": [
+        "quickspecs-v62:p2,p6"
+      ]
+    }
+  ],
+  "power_and_gpu_conditions": {
+    "installed_psu_watts": null,
+    "available_gpu_power_connectors": null,
+    "installed_front_fan_card_guide": null,
+    "manufacturer_xeon_options": [
+      {
+        "watts": 465,
+        "gpu_aux_power_cables": []
+      },
+      {
+        "watts": 750,
+        "gpu_aux_power_cables": [
+          {
+            "connector": "6-pin",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "watts": 1000,
+        "gpu_aux_power_cables": [
+          {
+            "connector": "6+2-pin",
+            "count": 4
+          }
+        ]
+      }
+    ],
+    "gpu_candidate_validation": "PSUラベル、補助電源、カードの長さ・高さ・厚さ、隣接スロット、前面ファンとカードガイドを候補ごとに照合する。",
+    "front_fan_card_guide_aftermarket_part": "1XM33AA",
+    "sources": [
+      "quickspecs-v62:p7,p8,p14,p22"
+    ]
+  },
+  "cpu_update_conditions": {
+    "platform": "Xeon W / C422 / LGA2066 R4",
+    "manufacturer_platform_qualified_list": [
+      "W-2295",
+      "W-2275",
+      "W-2265",
+      "W-2255",
+      "W-2245",
+      "W-2235",
+      "W-2225",
+      "W-2223",
+      "W-2145",
+      "W-2133",
+      "W-2125",
+      "W-2123",
+      "W-2104",
+      "W-2102"
+    ],
+    "qualification_scope": "HPのZ4 G4製品プラットフォームの一覧。実機の個別CPU交換適合を保証する一覧ではない。",
+    "conditions": [
+      "交換CPUに対応するBIOS",
+      "CPUの電力要求に適合するクーラー",
+      "電源容量とその他の構成"
+    ],
+    "minimum_bios_for_specific_upgrade": null,
+    "caveat": "Core X/X299構成のCPU互換を現C422基板へ適用しない。同じLGA2066だけでは互換と判断できない。",
+    "sources": [
+      "quickspecs-v62:p21,p41",
+      "service-guide:printed-p77-p82"
+    ]
+  },
+  "pending_physical_checks": [
+    "メモリモジュールのメーカー・型番・RDIMM種別・定格/実動作速度",
+    "基板上のDIMM番号ごとの使用状況",
+    "PSUラベルの容量・品番、GPU補助電源とSATA電源の残数",
+    "M.2の空きコネクタ・取付金具・固定ネジ・ヒートシンク",
+    "PCIe各スロットの物理的空きとカード幅による干渉",
+    "ドライブベイの実使用、キャリア・2.5型アダプター・SATAケーブル",
+    "既存CPUクーラーの品番と前面/メモリ冷却ユニット"
+  ],
+  "references": [
+    {
+      "id": "quickspecs-v62",
+      "title": "HP Z4 G4 QuickSpecs",
+      "version": 62,
+      "published": "2025-01-07",
+      "url": "https://www8.hp.com/h20195/v2/getpdf.aspx/c05527757.pdf",
+      "local": "sources/hp-z4-g4-quickspecs-v62.pdf",
+      "page_number_basis": "印刷ページ＝PDF物理ページ（1始まり）"
+    },
+    {
+      "id": "service-guide",
+      "title": "HP Z4 G4 Maintenance and Service Guide",
+      "edition": 6,
+      "published": "2024-08",
+      "document_part_number": "L08650-006",
+      "url": "https://kaas.hpcloud.hp.com/pdf-public/pdf_6775743_en-US-1.pdf",
+      "local": "sources/hp-z4-g4-service-guide-2024.pdf",
+      "relevant_pages": [
+        {
+          "printed": 77,
+          "pdf_one_based": 85,
+          "topic": "008 BIOS CPU互換"
+        },
+        {
+          "printed": 82,
+          "pdf_one_based": 90,
+          "topic": "912 CPUクーラー互換"
+        }
+      ]
+    },
+    {
+      "id": "hp-memory-faq",
+      "title": "日本HP 純正メモリ仕様変更FAQ a30090",
+      "url": "https://jp.ext.hp.com/v-ivr/workstation/other/faq/26/"
+    },
+    {
+      "id": "intel-w2123",
+      "title": "Intel Xeon W-2123 Specifications",
+      "url": "https://www.intel.com/content/www/us/en/products/sku/125036/intel-xeon-w2123-processor-8-25m-cache-3-60-ghz/specifications.html"
+    }
+  ]
+}
+
