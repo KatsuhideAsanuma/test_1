@@ -23,8 +23,11 @@
       "installed_gib": 32,
       "detected_modules": 4,
       "module_capacity_gib": 8,
-      "ecc_mode_observed": "SECDED",
-      "module_type_kernel_label": "Unbuffered-DDR4",
+      "ecc_enabled": true,
+      "ecc_evidence": "skx_edacはECC無効時に-ENODEVで登録を拒否する。mc0/mc1が登録済みのためECC有効と判断。",
+      "ecc_mode_kernel_label": "SECDED（skx_edacの固定値。実際のECC方式の検出ではない）",
+      "module_type_kernel_label": "Unbuffered-DDR4（skx_edacはMEM_DDR4を固定で報告し、RDIMM/UDIMMを判別しない）",
+      "channel_population_observed": "IMC0 Chan0/Chan1、IMC1 Chan0/Chan1に各1枚。4チャネル全てに装着済み",
       "module_actual_part_number": null,
       "module_actual_speed_mt_s": null
     },
@@ -72,7 +75,7 @@
       "DIMM5"
     ],
     "manufacturer_supported_type": "DDR4 ECC Registered DIMM (RDIMM)",
-    "current_module_type_caveat": "EDACのUnbuffered-DDR4表示はメーカーのRDIMM仕様と一致しない。実装品の形式・型番はラベル又はSMBIOSで確認する。",
+    "current_module_type_caveat": "EDAC（skx_edac）はメモリ種別を常にDDR4、ECCモードを常にSECDEDと固定値で報告するため、EDAC表示から実装品がRDIMMかUDIMMかは判断できない。実装品の形式・型番はラベル又はSMBIOSで確認する。",
     "hp_supported_current_w2100_max_gib": 256,
     "current_w2100_max_configuration": "32GB x 8",
     "product_family_max_gib": 512,
@@ -112,9 +115,11 @@
     "sources": [
       "quickspecs-v62:p14,p15,p21",
       "intel-w2123",
-      "hp-memory-faq"
+      "hp-memory-faq",
+      "linux-skx-edac"
     ],
-    "diagram": "sources/memory-layout-v62.png"
+    "diagram": "sources/memory-layout-v62.png",
+    "current_population_note": "現4枚は4チャネル全てに1枚ずつ装着済み。増設4枚は各チャネルの2枚目になる。"
   },
   "pcie_expansion": {
     "data_slots_total": 5,
@@ -148,7 +153,8 @@
         "connector_open_ended": true,
         "origin": "PCH",
         "occupancy": "追加カード未検出・空き候補",
-        "root_port_mapping_confirmed": false
+        "root_port_mapping_confirmed": false,
+        "observed_pch_root_port_note": "PCHルートポート0000:00:1c.4（Root Port #5）は配下バス02が空で列挙されている。Slot 2/4のいずれかの候補だが対応は未確定。"
       },
       {
         "slot": 3,
@@ -168,7 +174,8 @@
         "connector_open_ended": true,
         "origin": "PCH",
         "occupancy": "追加カード未検出・空き候補",
-        "root_port_mapping_confirmed": false
+        "root_port_mapping_confirmed": false,
+        "observed_pch_root_port_note": "PCHルートポート0000:00:1c.4（Root Port #5）は配下バス02が空で列挙されている。Slot 2/4のいずれかの候補だが対応は未確定。"
       },
       {
         "slot": 5,
@@ -337,7 +344,10 @@
       "published": "2025-01-07",
       "url": "https://www8.hp.com/h20195/v2/getpdf.aspx/c05527757.pdf",
       "local": "sources/hp-z4-g4-quickspecs-v62.pdf",
-      "page_number_basis": "印刷ページ＝PDF物理ページ（1始まり）"
+      "page_number_basis": "印刷ページ＝PDF物理ページ（1始まり）",
+      "reverified_jst": "2026-10-14",
+      "reverified_sha256_match": true,
+      "reverified_note": "HP掲載の現行ファイルと同一。より新しい版は未公開。"
     },
     {
       "id": "service-guide",
@@ -358,7 +368,10 @@
           "pdf_one_based": 90,
           "topic": "912 CPUクーラー互換"
         }
-      ]
+      ],
+      "reverified_jst": "2026-10-14",
+      "reverified_sha256_match": true,
+      "reverified_note": "HP掲載の現行ファイルと同一。より新しい版は未公開。"
     },
     {
       "id": "hp-memory-faq",
@@ -369,7 +382,14 @@
       "id": "intel-w2123",
       "title": "Intel Xeon W-2123 Specifications",
       "url": "https://www.intel.com/content/www/us/en/products/sku/125036/intel-xeon-w2123-processor-8-25m-cache-3-60-ghz/specifications.html"
+    },
+    {
+      "id": "linux-skx-edac",
+      "title": "Linux EDAC driver skx_edac (drivers/edac/skx_common.c, skx_base.c)",
+      "url": "https://github.com/torvalds/linux/blob/master/drivers/edac/skx_common.c",
+      "note": "skx_get_dimm_info: dimm->mtype=MEM_DDR4固定、dimm->edac_mode=EDAC_SECDED固定。skx_get_dimm_config: ECC無効時は\"ECC is disabled on imc\"を出力し-ENODEV。"
     }
-  ]
+  ],
+  "revised_jst": "2026-10-14",
+  "revision_note": "EDAC表示（Unbuffered-DDR4/SECDED）をskx_edacドライバの固定値と訂正。原本をHP掲載版と再照合。"
 }
-

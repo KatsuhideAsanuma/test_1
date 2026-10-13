@@ -1,0 +1,232 @@
+{
+  "schema_version": "1.0",
+  "created_jst": "2026-10-14",
+  "scope": "HP Z4 G4 (基板81C5 / C422 / BIOS P61 v02.97) への部品交換計画。対象はCPU（W-2235）とM.2 SSD（SN5100 2TB）の2点。GPU（RTX 3090）は別の大型筐体機へ搭載する方針に変更し、本機ではP2000を維持。DIMMは変更しない。",
+  "baseline": {
+    "reference": "../upgrade-reference.json",
+    "observations": "../observations.json",
+    "cpu": "Intel Xeon W-2123 (4C/8T, 120W, DDR4-2666)",
+    "memory": "8GB x4, 4チャネル各1枚, 型番・速度未確認",
+    "gpu": "NVIDIA Quadro P2000 (75W, 補助電源なし, Slot 1)",
+    "nvme": "SAMSUNG MZVLW512HMJP-000H1 512GB (ファームウェアSlot 6配下, M.2)",
+    "psu_watts": null,
+    "psu_note": "HPのSMBIOSにType 39（電源）エントリがなくOSから取得不可。ラベルで確認する。"
+  },
+  "parts": [
+    {
+      "id": "cpu",
+      "name": "Intel Xeon W-2235",
+      "identifiers": {
+        "s_spec": "SRGVA",
+        "stepping": "L1 (Intel注文情報)",
+        "batch_fpo": "L214F257",
+        "atpo_serial": "M2YG028402877",
+        "ordering_code": "CD8069504439102"
+      },
+      "spec": {
+        "cores_threads": "6C/12T",
+        "base_ghz": 3.8,
+        "turbo_ghz": 4.6,
+        "cache_mb": 8.25,
+        "tdp_w": 130,
+        "memory": "DDR4-2933, 4ch, ECC, 最大1TB",
+        "pcie_lanes": "48 (Gen3)",
+        "socket": "FCLGA2066",
+        "codename": "Cascade Lake W"
+      },
+      "verdict": "可能（条件付き）",
+      "basis": [
+        "QuickSpecs v62 p8・p41: W-2235はZ4 G4のXeon W対応一覧に掲載",
+        "QuickSpecs v62 p32: CPUクーラーのファンは『140W以下』と『140W超』の2クラス。W-2123(120W)とW-2235(130W)は同じ140W以下クラス",
+        "BIOS P61 v02.97 (2025-06-17) はW-2200対応後の最新版",
+        "基板はC422 (Xeon W用)。Core X用X299基板ではない"
+      ],
+      "conditions": [
+        "現DIMMがHP『2666』表記品の場合、QuickSpecs p14の表ではW-2200(CL)非対応(N)。ラベルで速度表記を確認する",
+        "CPU単体購入のためサーマルグリスは別途用意する（HPのスペアキットのみ同梱）",
+        "ヒートシンクのネジはT30、対角順に緩める・締める"
+      ],
+      "open_items": [
+        "DIMMの型番・速度表記",
+        "現行ヒートシンクのファン線数（5線=140W以下クラスの確認）"
+      ],
+      "sources": [
+        "intel-w2235",
+        "intel-w2235-ordering",
+        "quickspecs-v62:p8,p14,p41,p32",
+        "service-guide:printed-p31-p33"
+      ]
+    },
+    {
+      "id": "ssd",
+      "name": "WD Blue SN5100 2TB",
+      "identifiers": {
+        "model_number": "WDS200T5B0E-00CPE0"
+      },
+      "spec": {
+        "form_factor": "M.2 2280",
+        "interface": "PCIe Gen4 x4, NVMe",
+        "height_mm": 2.38,
+        "sided": "片面実装（厚さ2.38mmから）",
+        "seq_read_mb_s": 7100,
+        "seq_write_mb_s": 6700,
+        "avg_power_w": 4.1,
+        "endurance_tbw": 900,
+        "nand": "Sandisk BiCS8 QLC (レビュー情報)",
+        "dram": "なし (HMB)"
+      },
+      "verdict": "可能",
+      "basis": [
+        "QuickSpecs v62 p6・p22: M.2スロット2基、PCIe Gen3 x4 CPU直結、最大80mm、Socket 3 Key M",
+        "実機: ファームウェアSlot 7配下のルートポート0000:2c:03.0が8.0GT/s x4で列挙済み、配下機器なし"
+      ],
+      "conditions": [
+        "Gen3接続のため実効は約3.5GB/sで頭打ち",
+        "2基目のM.2の固定ネジ・スタンドオフの有無を現物確認",
+        "BIOS『Advanced > Slot Settings > M.2 SSDs』は既定で有効"
+      ],
+      "open_items": [
+        "基板上のM.2番号とファームウェアSlot 6/7の対応",
+        "OS移行の要否（現rootはLUKS+LVM上）"
+      ],
+      "sources": [
+        "sandisk-sn5100-datasheet",
+        "quickspecs-v62:p6,p22"
+      ]
+    },
+    {
+      "id": "gpu",
+      "name": "MSI GeForce RTX 3090 GAMING X TRIO 24G",
+      "identifiers": {
+        "vendor_model": "MSI GeForce RTX 3090 GAMING X TRIO 24G",
+        "confirmed_jst": "2026-10-14",
+        "note": "ユーザー申告。DP 1.4a x3 / HDMI 2.1 x1 の構成と一致"
+      },
+      "verdict": "本機では搭載しない。以下は検討時の記録",
+      "basis": [
+        "QuickSpecs v62 p2・p7-8: 電源は465W(GPU用ケーブルなし) / 750W(6ピン x2) / 1000W(6+2ピン x4)",
+        "QuickSpecs v62 p13-14: 高性能単体GPUは前面ファン・カードガイド1XM33AAと750W以上が条件。HP認定最大はデュアルスロット 4.4インチ高 x 10.5インチ長 (約112 x 267mm)",
+        "QuickSpecs v62 p22: Slot 1-5はフルレングス対応（カードガイドの延長支持具使用時）",
+        "実機: Slot 1 (0000:20:00.0) はGen3 x16。3スロット厚ならSlot 2・3の位置を塞ぐ"
+      ],
+      "conditions": [
+        "電源: 1000W（6+2ピン x4）が必須。8ピン x3を接続する。465Wは不可。750W（6ピン x2）は本数・容量とも不足",
+        "高さ: カード140mmに加え、上面の8ピンプラグとケーブル曲げで約30〜35mm必要。Slot 1コネクタ上面からサイドパネル内側まで約175mm無い場合は90度変換アダプターの使用か装着不可",
+        "長さ: 323mmはHPのフルレングス（312mm）を11mm超える。前面カードガイド・ファンやドライブケージと干渉しないかを実測",
+        "厚さ: 3スロット。Slot 2・3の位置を塞ぎ、残る空きはSlot 4（x4）とSlot 5（x8）",
+        "重量: 約1.56kg。前面カードガイドの延長支持具で先端を支える",
+        "P2000を残す場合はSlot 5へ移動。ドライバ580はAmpereとPascalの両方に対応"
+      ],
+      "open_items": [
+        "電源ラベルの容量・品番・GPU用ケーブルの本数と形状",
+        "Slot 1コネクタ上面〜サイドパネル内側の距離（目標175mm以上、または90度アダプター併用で約150mm以上）",
+        "リアブラケット〜前面の障害物（カードガイド・ファン・ドライブケージ）の距離（目標323mm以上）",
+        "前面ファン・カードガイド1XM33AAの有無"
+      ],
+      "sources": [
+        "msi-3090-gaming-x-trio",
+        "quickspecs-v62:p2,p7,p8,p13,p14,p22,p33",
+        "zerodensity-z4g4-750w",
+        "hp-psu-1000w-spare"
+      ],
+      "spec": {
+        "length_mm": 323,
+        "height_mm": 140,
+        "thickness_mm": 56,
+        "slots": 3,
+        "weight_kg": 1.56,
+        "power_connectors": "8ピン x3（カード上面に配置）",
+        "power_limit_w": 370,
+        "vendor_recommended_psu_w": 750,
+        "outputs": "DisplayPort 1.4a x3, HDMI 2.1 x1",
+        "memory": "24GB GDDR6X 384-bit"
+      },
+      "hp_envelope_comparison": {
+        "hp_max_height_mm": 112,
+        "card_height_mm": 140,
+        "height_excess_mm": 28,
+        "hp_max_length_mm": 267,
+        "full_length_with_extender_mm": 312,
+        "card_length_mm": 323,
+        "length_excess_over_full_length_mm": 11,
+        "hp_max_slots": 2,
+        "card_slots": 3
+      },
+      "estimate_note": "筐体幅169mmからの概算で、スロット底〜サイドパネル内側は約155〜160mm。カード高さ140mmの上に残るのは約15〜20mmで、上面8ピン×3のプラグとケーブル曲げ（約30mm）が収まらない計算。長さ323mmもフルレングス312mmを超え、前面カードガイドと干渉する可能性が高い。HP図面ではなく外寸からの推定のため、開封時の実測で確定する。",
+      "alternatives": [
+        {
+          "option": "高さ112mm級のRTX 3090",
+          "examples": "EVGA XC3 Ultra（285×112mm）、Palit GamingPro（294×112mm）",
+          "note": "8ピンは上面だが高さ側に約28mmの余裕が増える。1000W電源は同様に必要"
+        },
+        {
+          "option": "HP認定の標準寸法カード",
+          "examples": "NVIDIA RTX A5000（2スロット、267mm、230W、8ピン×1）等",
+          "note": "QuickSpecs p13の認定一覧。750W以上とカードガイド1XM33AAが条件"
+        }
+      ],
+      "status": "対象外（2026-10-14 別機へ移管）"
+    }
+  ],
+  "accessories": [
+    {
+      "item": "サーマルグリス",
+      "when": "CPU交換時に必須（HPスペアキット以外は同梱なし）"
+    },
+    {
+      "item": "M.2固定ネジ / スタンドオフ",
+      "when": "2基目のM.2位置に無い場合"
+    },
+    {
+      "item": "工具",
+      "note": "T30（ヒートシンク）、プラス（M.2ネジ）、静電対策、無水エタノールと不織布"
+    },
+    {
+      "item": "（参考・今回不要）HP Z4 G4 1000W電源 851383-001 / L20514-001、Fan and Front Card Guide Kit 1XM33AA、DDR4-2933 RDIMM 5YZ56AA",
+      "when": "GPU交換やメモリ増設を本機で行う場合のみ"
+    }
+  ],
+  "references": [
+    {
+      "id": "intel-w2235",
+      "url": "http://www.intel.com/content/www/us/en/products/sku/198608/intel-xeon-w2235-processor-8-25m-cache-3-80-ghz/specifications.html"
+    },
+    {
+      "id": "intel-w2235-ordering",
+      "url": "https://www.intel.com/content/www/us/en/products/sku/198608/intel-xeon-w2235-processor-8-25m-cache-3-80-ghz/ordering.html"
+    },
+    {
+      "id": "sandisk-sn5100-datasheet",
+      "url": "https://documents.sandisk.com/content/dam/asset-library/en_us/assets/public/sandisk/product/internal-drives/wd-blue-sn5100-nvme-ssd/data-sheet-wd-blue-sn5100-nvme-ssd.pdf"
+    },
+    {
+      "id": "quickspecs-v62",
+      "local": "../sources/hp-z4-g4-quickspecs-v62.pdf",
+      "page_basis": "印刷ページ＝PDFページ"
+    },
+    {
+      "id": "service-guide",
+      "local": "../sources/hp-z4-g4-service-guide-2024.pdf",
+      "page_basis": "PDFページ＝印刷ページ+8"
+    },
+    {
+      "id": "zerodensity-z4g4-750w",
+      "url": "https://docs.zerodensity.tv/reality-4.27/installation-and-configuration-guide/hardware-platforms/legacy-hp-z4g4-configuration/gpu-installation/gpu-to-750-watts/"
+    },
+    {
+      "id": "hp-psu-1000w-spare",
+      "url": "https://www.cpumedics.com/hp-851383-001-1000w-power-supply-for-hp-workstation-z4-z6-g4/"
+    },
+    {
+      "id": "msi-3090-gaming-x-trio",
+      "title": "MSI GeForce RTX 3090 GAMING X TRIO 24G 仕様（レビュー・販売店記載の公表値）",
+      "urls": [
+        "https://hexus.net/qaeovd",
+        "https://www.pcworld.com/article/393541/msi-geforce-rtx-3090-gaming-x-trio-review.html",
+        "https://www.paradigit.ie/msi-geforce-rtx-3090-gaming-x-trio/80057850/product"
+      ],
+      "note": "MSI公式仕様ページは取得時403のため未参照。323 x 140 x 56 mm、3スロット、8ピン x3、電力上限370W、推奨電源750W"
+    }
+  ],
+  "revised_jst": "2026-10-14"
+}

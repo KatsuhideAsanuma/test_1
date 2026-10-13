@@ -10,7 +10,9 @@
       "published": "2025-01-07",
       "pages": 100,
       "bytes": 1192997,
-      "sha256": "83ae8dcf7d7b4eb20c236691c0e7cb626f89d31c21e4637dbf7ddf80c4acb8d7"
+      "sha256": "83ae8dcf7d7b4eb20c236691c0e7cb626f89d31c21e4637dbf7ddf80c4acb8d7",
+      "reverified_on_jst": "2026-10-14",
+      "reverified_sha256_match": true
     },
     {
       "file": "hp-z4-g4-service-guide-2024.pdf",
@@ -22,7 +24,9 @@
       "document_part_number": "L08650-006",
       "pages": 118,
       "bytes": 4285451,
-      "sha256": "c3cd789385dfb9bab76ecef75d87b8c4fc690ed5b122d583f825d799fc80dd19"
+      "sha256": "c3cd789385dfb9bab76ecef75d87b8c4fc690ed5b122d583f825d799fc80dd19",
+      "reverified_on_jst": "2026-10-14",
+      "reverified_sha256_match": true
     },
     {
       "file": "memory-layout-v62.png",
@@ -60,4 +64,3 @@
     }
   ]
 }
-

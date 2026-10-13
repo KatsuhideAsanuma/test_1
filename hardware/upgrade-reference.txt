@@ -1,10 +1,11 @@
 HP Z4 G4 部品更新用情報
 基準日 2026年10月9日 JST
+改訂 2026年10月14日 JST（EDAC表示の解釈を訂正、原本をHP掲載版と再照合）
 対象 Xeon W-2123 / Intel C422 / 基板 HP 81C5 / BIOS P61 v02.97
 
 現在の構成
   CPU: Xeon W-2123、4コア8スレッド
-  メモリ: 32GB、8GBモジュール4枚、ECC SECDEDを認識
+  メモリ: 32GB、8GBモジュール4枚、ECC有効、4チャネル各1枚
   GPU: Quadro P2000、VRAM 5120MiB
   SSD: Samsung MZVLW512HMJP-000H1、512GB、PCIe 3.0 x4 NVMe
   光学ドライブ: HP HLDS DVDRW GUD1N、SATA
@@ -18,6 +19,7 @@ HP Z4 G4 部品更新用情報
     Slot 2: PCIe 3.0 x4、PCH接続、末端開放、追加カード未検出。
     Slot 3: PCIe 3.0 x16、CPU直結、配下機器未検出。
     Slot 4: PCIe 3.0 x4、PCH接続、末端開放、追加カード未検出。
+    PCHルートポート00:1c.4（Root Port #5）は配下バス02が空で列挙。Slot 2/4のいずれかの候補、対応は未確定。
     Slot 5: 最下段、PCIe 3.0 x8、CPU直結、末端開放、配下機器未検出。
   M.2: 全2基、CPU直結PCIe 3.0 x4、Key M、NVMe1台認識、空き候補1基。
     使用SSDはファームウェアSlot 6配下。Slot 7配下は機器未検出。
@@ -46,7 +48,12 @@ HP Z4 G4 部品更新用情報
   公式図の装着順:
     DIMM1 → DIMM8 → DIMM3 → DIMM6 → DIMM2 → DIMM7 → DIMM4 → DIMM5
   現状の個別DIMM番号は未確定。
-  EDACはUnbuffered-DDR4と表示し、メーカーRDIMM仕様と一致しない。
+  現4枚はIMC0/IMC1の各チャネル0・1に1枚ずつで、4チャネル全てに装着済み。
+  増設4枚は各チャネルの2枚目になる。
+  EDAC（skx_edac）はメモリ種別を常にDDR4（表示はUnbuffered-DDR4）、
+  ECCモードを常にSECDEDと固定値で報告し、RDIMM/UDIMMを判別しない。
+  EDAC表示から実装品の形式は判断できない。ECC有効は、ドライバがECC無効時に
+  コントローラ登録を拒否する仕様と、mc0/mc1が登録済みである事実から裏付けられる。
   実装品の形式はモジュール型番またはラベルで確認する。
 
 GPUと電源の条件
@@ -82,6 +89,8 @@ CPU更新条件
   sources/memory-layout-v62.png: 仕様書p21、メモリ装着順。
   sources/internal-layout-v62.png: 仕様書p2、内部配置。
   sources/index.json: 原本のURL、版、容量、SHA256。
+  replace/: 部品交換（W-2235へのCPU交換、SN5100 2TBのM.2追加）の手順書・チェックシート・部品データ（2026-10-14作成）。
+  原本2点は2026年10月14日にHP掲載の現行ファイルと再照合し、SHA256が一致（v62・第6版が現行）。
 
 根拠
   HP QuickSpecs v62: 印刷p2・6（スロット/ベイ）、p7～8（電源）、
@@ -93,6 +102,8 @@ CPU更新条件
   https://kaas.hpcloud.hp.com/pdf-public/pdf_6775743_en-US-1.pdf
   日本HPメモリ注意 a30090
   https://jp.ext.hp.com/v-ivr/workstation/other/faq/26/
+  Linux skx_edacドライバ（drivers/edac/skx_common.c、skx_base.c）: メモリ種別・ECCモードの固定値報告、ECC無効時の登録拒否。
+  https://github.com/torvalds/linux/blob/master/drivers/edac/skx_common.c
   Intel W-2123仕様
   https://www.intel.com/content/www/us/en/products/sku/125036/intel-xeon-w2123-processor-8-25m-cache-3-60-ghz/specifications.html
 
